@@ -1,75 +1,267 @@
-import Link from 'next/link';
-import { Mail, Facebook, Instagram, Linkedin } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rohan Parvej</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-export default function Footer() {
-  return (
-    <footer className="w-full bg-[#f8fafc] pt-20 pb-10 px-6 border-t border-gray-100">
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
-        
-        {/* সেন্ট্রাল লোগো এবং নাম সেকশন (রিপল ইফেক্ট সহ) */}
-        <div className="relative mb-12 flex flex-col items-center">
-          {/* ব্যাকগ্রাউন্ড রিপল শেপস */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -z-10"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white rounded-full border border-gray-100 -z-10 shadow-sm"></div>
-          
-          <div className="text-center">
-            <h2 className="text-3xl font-black tracking-tighter text-black uppercase">
-              ROHAN
-            </h2>
-            <div className="flex items-center justify-center gap-1">
-              <span className="h-[1px] w-4 bg-blue-600"></span>
-              <span className="text-[10px] font-bold tracking-[0.4em] text-blue-600 uppercase">
-                PARVEJ
-              </span>
-              <span className="h-[1px] w-4 bg-blue-600"></span>
-            </div>
-          </div>
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f5f5f3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+
+    main p {
+      font-size: 15px;
+      color: #888;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #f5f5f3;
+      border-top: 1px solid #e0dede;
+    }
+
+    .footer-logo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 70px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-arc {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 320px;
+      pointer-events: none;
+    }
+
+    .footer-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 44px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .footer-logo-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      letter-spacing: 7px;
+      color: #111;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .film-strip {
+      display: inline-flex;
+      align-items: flex-end;
+    }
+
+    .footer-logo-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 9px;
+      color: #666;
+      font-weight: 300;
+      text-transform: uppercase;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    .footer-nav a {
+      text-decoration: none;
+      color: #222;
+      font-size: 14px;
+      font-weight: 400;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      padding: 9px 24px;
+      background: transparent;
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+    }
+
+    .footer-nav a:hover {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-email {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #333;
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-email:hover { color: #000; }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-social a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: opacity 0.18s;
+    }
+
+    .footer-social a:hover { opacity: 0.75; }
+
+    .footer-copy {
+      font-size: 13px;
+      color: #888;
+    }
+
+    @media (max-width: 640px) {
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        padding: 22px 24px;
+        text-align: center;
+      }
+      .footer-logo-name { font-size: 38px; }
+      .footer-arc { width: 420px; height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <p>Your page content goes here</p>
+  </main>
+
+  <footer>
+    <div class="footer-logo-section">
+      <!-- Arc rings background -->
+      <svg class="footer-arc" viewBox="0 0 700 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="350" cy="320" rx="310" ry="240" stroke="#e0dede" stroke-width="1" fill="none"/>
+        <ellipse cx="350" cy="320" rx="240" ry="185" stroke="#e8e6e6" stroke-width="1" fill="none"/>
+        <ellipse cx="350" cy="320" rx="165" ry="125" stroke="#eeecec" stroke-width="1" fill="none"/>
+      </svg>
+
+      <!-- Logo -->
+      <div class="footer-logo">
+        <div class="footer-logo-name">
+          <!-- Film strip icon replacing "R" -->
+          <span class="film-strip">
+            <svg width="40" height="50" viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="40" height="50" rx="3" fill="#111"/>
+              <rect x="3" y="3.5" width="7" height="7" rx="1" fill="#f5f5f3"/>
+              <rect x="16" y="3.5" width="7" height="7" rx="1" fill="#f5f5f3"/>
+              <rect x="29" y="3.5" width="7" height="7" rx="1" fill="#f5f5f3"/>
+              <rect x="3" y="39.5" width="7" height="7" rx="1" fill="#f5f5f3"/>
+              <rect x="16" y="39.5" width="7" height="7" rx="1" fill="#f5f5f3"/>
+              <rect x="29" y="39.5" width="7" height="7" rx="1" fill="#f5f5f3"/>
+            </svg>
+          </span>
+          OHAN PARVEJ
         </div>
-
-        {/* নেভিগেশন পিলস/বাটনস */}
-        <nav className="mb-16">
-          <ul className="flex flex-wrap justify-center gap-3">
-            {['Creators', 'About', 'Services', 'Projects', 'Contact', 'Blog'].map((item) => (
-              <li key={item}>
-                <Link 
-                  href={`/${item.toLowerCase()}`} 
-                  className="px-6 py-2.5 bg-gray-100/80 text-gray-700 text-sm font-semibold rounded-full hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-200"
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* বটম সেকশন (লাইন দিয়ে আলাদা করা) */}
-        <div className="w-full pt-8 border-t border-gray-200/60 flex flex-col md:flex-row justify-between items-center gap-6">
-          
-          {/* ইমেইল */}
-          <div className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors cursor-pointer group">
-            <Mail className="w-5 h-5" />
-            <span className="text-sm font-semibold">contact@rohanparvej.com</span>
-          </div>
-
-          {/* সোশ্যাল আইকনস */}
-          <div className="flex items-center gap-4">
-            <a href="#" className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a href="#" className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a href="#" className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-              <Linkedin className="w-5 h-5" />
-            </a>
-          </div>
-
-          {/* কপিরাইট */}
-          <div className="text-sm text-gray-500 font-medium">
-            © {new Date().getFullYear()} Rohan Parvej. All Rights Reserved.
-          </div>
-        </div>
+        <div class="footer-logo-sub">Director &nbsp;·&nbsp; Creator &nbsp;·&nbsp; Filmmaker</div>
       </div>
-    </footer>
-  );
-}
+
+      <!-- Navigation -->
+      <nav class="footer-nav">
+        <a href="#">Works</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+        <a href="#">Blog</a>
+      </nav>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <a class="footer-email" href="mailto:contact@rohanparvej.com">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="3" width="14" height="10" rx="2" stroke="#444" stroke-width="1.2"/>
+          <path d="M1.5 5L8 9.5L14.5 5" stroke="#444" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        contact@rohanparvej.com
+      </a>
+
+      <div class="footer-social">
+        <!-- Facebook -->
+        <a href="https://facebook.com" target="_blank" rel="noopener" title="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="_blank" rel="noopener" title="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1.2" fill="white" stroke="none"/>
+          </svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com" target="_blank" rel="noopener" title="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+      </div>
+
+      <span class="footer-copy">© 2025 Rohan Parvej. All Rights Reserved.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
